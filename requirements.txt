@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+transformers
+torch
+mysql-connector-python
+langchain-core
+jinja2

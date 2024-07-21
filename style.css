@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    margin: 20px 0;
+}
+
+#response {
+    margin-top: 20px;
+    font-weight: bold;
+}
