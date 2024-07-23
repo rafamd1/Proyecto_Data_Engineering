@@ -8,7 +8,7 @@ def create_table():
         connection = mysql.connector.connect(
             host='database-2.cnouiecoqkxd.eu-north-1.rds.amazonaws.com',
             user='rafamd1',
-            password='Atleti201',
+            password='',
             database='database-2'
         )
 
