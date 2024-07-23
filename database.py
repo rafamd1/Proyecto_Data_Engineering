@@ -7,7 +7,7 @@ def create_table():
         # Conectar al servidor MySQL y seleccionar la base de datos
         connection = mysql.connector.connect(
             host='database-2.cnouiecoqkxd.eu-north-1.rds.amazonaws.com',
-            user='rafamd1',
+            user='',
             password='',
             database='database-2'
         )
@@ -45,7 +45,7 @@ def create_and_connect_database():
         # Conectar al servidor MySQL sin especificar una base de datos
         connection = mysql.connector.connect(
             host='database-2.cnouiecoqkxd.eu-north-1.rds.amazonaws.com',
-            user='rafamd1',
+            user='',
             password=''
         )
         if connection.is_connected():
