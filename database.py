@@ -144,33 +144,3 @@ if __name__ == "__main__":
         print("Connection established successfully.")
     else:
         print("Connection failed.")
-
-
-
-# def connect_to_mysql():
-#     try:
-#         connection = mysql.connector.connect(
-#             host='database-2.cnouiecoqkxd.eu-north-1.rds.amazonaws.com',
-#             user='rafamd1',
-#             password='Atleti201',
-#             database='database-2'
-#         )
-#         if connection.is_connected():
-#             print("Successfully connected to the database")
-#             cursor = connection.cursor()
-#             cursor.execute("SELECT DATABASE();")
-#             db = cursor.fetchone()
-#             print("Connected to database:", db)
-            
-#             # Perform database operations here
-            
-#     except Error as e:
-#         print("Error while connecting to MySQL", e)
-#     finally:
-#         if connection.is_connected():
-#             cursor.close()
-#             connection.close()
-#             print("MySQL connection is closed")
-
-# if __name__ == "__main__":
-#     connect_to_mysql()
