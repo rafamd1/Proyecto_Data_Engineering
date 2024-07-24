@@ -1,7 +1,6 @@
 fastapi
 uvicorn
-transformers
-torch
+pydantic
+openai==0.28.0
 mysql-connector-python
-langchain-core
 jinja2
