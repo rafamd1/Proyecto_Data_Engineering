@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from langchain_core.prompts import PromptTemplate
+import openai
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from app.database import create_and_connect_database  # Asegúrate de que esta importación es correcta
@@ -15,22 +14,30 @@ templates = Jinja2Templates(directory="app/templates")
 # Montar los archivos estáticos (CSS, JS, etc.)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
-# Cargar el tokenizador y el modelo de HuggingFace
-tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
-model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
+# Configurar la clave de API de OpenAI
+openai.api_key = ""
 
 # Modelo de datos para la consulta
 class Query(BaseModel):
     text: str
 
-# Función para enviar la consulta al modelo de lenguaje
+# Función para enviar la consulta al modelo de OpenAI (GPT-3.5-turbo)
 def get_response(query: str) -> str:
-    prompt = PromptTemplate(template="User: {query}\nAssistant:", input_variables=["query"])
-    formatted_prompt = prompt.format(query=query)
-    inputs = tokenizer.encode(formatted_prompt, return_tensors="pt")
-    outputs = model.generate(inputs, max_length=150, num_beams=5, early_stopping=True)
-    response = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    return response
+    try:
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are the best poetic assistant, skilled in explaining complex programming concepts with creative flair. Write it in Spanish."},
+                {"role": "user", "content": query}
+            ]
+        )
+        # Ajuste para la estructura del objeto de respuesta
+        if completion.choices and len(completion.choices) > 0:
+            # Acceso correcto a la respuesta
+            return completion.choices[0].message['content'].strip()
+        return "No content found in response"
+    except Exception as e:
+        return f"Error: {e}"
 
 @app.post("/query/")
 async def query_endpoint(query: Query):
@@ -54,7 +61,7 @@ async def query_endpoint(query: Query):
         
         return {"response": response}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {e}")
 
 @app.get("/")
 async def read_root(request: Request):
