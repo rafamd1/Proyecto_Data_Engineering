@@ -1,7 +1,7 @@
 # Proyecto Data Engineering: Desarrollo de una Aplicación de IA Generativa
 
 ## Descripción del Proyecto
-El objetivo es desarrollar una aplicación web que integre un modelo de lenguaje generativo para ofrecer una experiencia interactiva con los usuarios. La aplicación utiliza Python y FastAPI para interactuar con el modelo **facebook/bart-large-cnn** de HuggingFace. Los usuarios podrán enviar consultas a través de la API y recibir respuestas generadas por el modelo. Las interacciones serán registradas en una base de datos desplegada en AWS para mantener un historial completo de consultas y respuestas.
+El objetivo es desarrollar una aplicación web que integre un modelo de lenguaje generativo para ofrecer una experiencia interactiva con los usuarios. La aplicación utiliza Python y FastAPI para interactuar con el modelo **3.5 turbo de ChatGPT**, dándole un prompt inicial para generar poemas en español como respuesta. Los usuarios podrán enviar consultas a través de la API y recibir respuestas generadas por el modelo. Las interacciones serán registradas en una base de datos desplegada en AWS para mantener un historial completo de consultas y respuestas.
 
 ## Objetivos
 - Desarrollo de Aplicación Web: Construir una aplicación web con Python y FastAPI que permita la interacción con modelos de lenguaje.
